@@ -42,7 +42,7 @@
 `CREATE TABLE membros`<br/>
 `( idprojeto bigserial NOT NULL, `<br/>
 `idpessoa bigint NOT NULL,  `<br/>
-`CONSTRAINT pk_membros_projeto PRIMARY KEY (idprojeto),`<br/>
+`CONSTRAINT pk_membros_projeto PRIMARY KEY (idprojeto, idpessoa),`<br/>
 `CONSTRAINT fk_membros_projeto FOREIGN KEY (idprojeto)`<br/>
 `REFERENCES projeto (id) MATCH SIMPLE`<br/>
 `ON UPDATE NO ACTION ON DELETE NO ACTION,`<br/>
