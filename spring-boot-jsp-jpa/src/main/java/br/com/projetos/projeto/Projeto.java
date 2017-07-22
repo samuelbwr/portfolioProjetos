@@ -1,8 +1,10 @@
 package br.com.projetos.projeto;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,10 +15,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.ValidationException;
+
+import org.springframework.data.rest.core.annotation.HandleBeforeDelete;
 
 import br.com.projetos.pessoa.Pessoa;
 import lombok.AllArgsConstructor;
@@ -37,6 +44,8 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Accessors(fluent = true, chain= true)
 public class Projeto {
+	
+	final static List<String> UNDELETABLE_STAGES = Arrays.asList("iniciado", "encerrado", "em andamento");
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,12 +82,10 @@ public class Projeto {
 	@JoinColumn(name="idgerente")
 	private Pessoa gerente;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinTable(name = "membros",
             joinColumns = @JoinColumn(name = "idprojeto", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "idpessoa", referencedColumnName = "id"))
 	private List<Pessoa> membros;
 		
-	
-
 }

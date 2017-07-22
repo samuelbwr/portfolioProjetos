@@ -25,7 +25,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Builder(toBuilder=true)
 @AllArgsConstructor
-@Accessors(fluent = true, chain= true)
+@Accessors(fluent = true, chain = true)
 public class Pessoa {
 
 	@Id
@@ -43,6 +43,6 @@ public class Pessoa {
 	@Column(length=14)
 	private String cpf;
 	
-	private Boolean funcionario;
+	private Boolean funcionario = false;
 	
 }

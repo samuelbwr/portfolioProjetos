@@ -8,6 +8,8 @@ import java.util.GregorianCalendar;
 
 public class ProjetoStubs {
 
+	public static String UNDELETABLE_STATUS = "iniciado";
+	
 	public static Projeto 
 		INVALID_PROJETO = Projeto.builder().descricao("Algum projeto").build(),
 		MINIMAL_PROJETO = Projeto.builder().nome("Nome do Projeto").build(),

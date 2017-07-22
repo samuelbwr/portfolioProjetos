@@ -1,6 +1,9 @@
 package br.com.projetos.pessoa;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import javax.validation.ConstraintViolationException;
+
 import static br.com.projetos.pessoa.PessoaStubs.*;
 
 import org.junit.Before;
@@ -27,5 +30,16 @@ public class PessoaRepositoryTest {
 		Pessoa pessoa = pessoaRepository.save(FULL_PESSOA);
 		assertThat(pessoa.id()).isGreaterThan(0l);
 	}
-
+	
+	@Test
+	public void testAddPessoaFunctionario() throws Exception {
+		Pessoa pessoa = pessoaRepository.save(FUNCIONARIO);
+		assertThat(pessoa.id()).isGreaterThan(0l);
+		assertThat(pessoa.funcionario()).isTrue();
+	}
+	
+	@Test(expected = ConstraintViolationException.class)
+	public void testAddInvalidPessoa() throws Exception {
+		pessoaRepository.save(INVALID_PESSOA);
+	}
 }
