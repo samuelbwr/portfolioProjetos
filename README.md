@@ -43,7 +43,7 @@
 `( idprojeto bigserial NOT NULL, `<br/>
 `idpessoa bigint NOT NULL,  `<br/>
 `CONSTRAINT pk_membros_projeto PRIMARY KEY (idprojeto),`<br/>
-`CONSTRAINT fk_membros_pessoa FOREIGN KEY (idpessoa)`<br/>
+`CONSTRAINT fk_membros_projeto FOREIGN KEY (idprojeto)`<br/>
 `REFERENCES projeto (id) MATCH SIMPLE`<br/>
 `ON UPDATE NO ACTION ON DELETE NO ACTION,`<br/>
 `CONSTRAINT fk_pessoa FOREIGN KEY (idpessoa)`<br/>
