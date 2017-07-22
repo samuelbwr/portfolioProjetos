@@ -1,5 +1,6 @@
 package br.com.projetos.pessoa;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,15 +15,13 @@ import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Entity
 @Table(name = "pessoa")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Builder(toBuilder=true)
 @AllArgsConstructor

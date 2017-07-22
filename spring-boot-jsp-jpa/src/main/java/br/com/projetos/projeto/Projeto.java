@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,15 +21,17 @@ import javax.validation.constraints.NotNull;
 import br.com.projetos.pessoa.Pessoa;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @Entity
 @Table(name="projeto")
-@Getter
-@Setter
+@Data
+@ToString(exclude= {"membros"})
 @NoArgsConstructor
 @Builder(toBuilder=true)
 @AllArgsConstructor
@@ -66,11 +69,11 @@ public class Projeto {
 	@Column(length=45)
 	private String risco;
 	
-	@ManyToOne(optional=true)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="idgerente")
 	private Pessoa gerente;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "membros",
             joinColumns = @JoinColumn(name = "idprojeto", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "idpessoa", referencedColumnName = "id"))
