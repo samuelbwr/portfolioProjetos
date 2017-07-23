@@ -20,12 +20,15 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.ValidationException;
 
 import org.springframework.data.rest.core.annotation.HandleBeforeDelete;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import br.com.projetos.pessoa.Pessoa;
+import br.com.projetos.projeto.validator.OnlyFuncionario;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,7 +45,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Builder(toBuilder=true)
 @AllArgsConstructor
-@Accessors(fluent = true, chain= true)
+@Accessors(chain = true)
 public class Projeto {
 	
 	final static List<String> UNDELETABLE_STAGES = Arrays.asList("iniciado", "encerrado", "em andamento");
@@ -78,14 +81,15 @@ public class Projeto {
 	@Column(length=45)
 	private String risco;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER, optional=false, cascade= {CascadeType.MERGE,CascadeType.REMOVE, CascadeType.DETACH})
 	@JoinColumn(name="idgerente")
 	private Pessoa gerente;
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER, cascade= {CascadeType.MERGE,CascadeType.REMOVE, CascadeType.DETACH})
     @JoinTable(name = "membros",
             joinColumns = @JoinColumn(name = "idprojeto", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "idpessoa", referencedColumnName = "id"))
+	@OnlyFuncionario
 	private List<Pessoa> membros;
 		
 }

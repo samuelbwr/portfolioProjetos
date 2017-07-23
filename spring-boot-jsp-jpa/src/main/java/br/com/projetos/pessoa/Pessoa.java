@@ -1,6 +1,5 @@
 package br.com.projetos.pessoa;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -23,9 +22,9 @@ import lombok.experimental.Accessors;
 @Table(name = "pessoa")
 @Data
 @NoArgsConstructor
-@Builder(toBuilder=true)
+@Builder
 @AllArgsConstructor
-@Accessors(fluent = true, chain = true)
+@Accessors(chain = true)
 public class Pessoa {
 
 	@Id
@@ -43,6 +42,10 @@ public class Pessoa {
 	@Column(length=14)
 	private String cpf;
 	
-	private Boolean funcionario = false;
-	
+	private boolean funcionario;
+
+	public Pessoa(long id) {
+		super();
+		this.id = id;
+	}
 }

@@ -1,4 +1,43 @@
-
+Rest end-points:<br/>
+<br/>
+Pessoa:<br/>
+POST: /pessoas <br/>
+PUT: /pessoas/{id} <br/>
+DELETE: /pessoas/{id} <br/>
+GET: /pessoas/{id} <br/>
+Objeto (application/json): <br/>
+`{`   <br/>
+`	"nome": "Nome teste",`<br/>
+`	"dataNascimento": "1990-01-02",`<br/>
+`	"cpf": "000999000-99",`<br/>
+`	"funcionario": "true"`<br/>
+`}`<br/>
+<br/>
+Projeto:<br/>
+POST: /projetos<br/>
+PUT: /projetos/{id}<br/>
+DELETE: /projetos/{id}<br/>
+GET: /projetos/{id}<br/>
+Objeto (application/json):<br/>
+`{  ` <br/>
+`	`"nome": "Projeto 01",`<br/>
+`	"dataInicio": "1990-01-02",`<br/>
+`	"dataPrevisao": "1990-01-02",`<br/>
+`	"dataFim": "1990-01-02",`<br/>
+`	"descricao": "Descrição do projeto",`<br/>
+`	"status": "iniciado",`<br/>
+`	"orcamento": 100.00,`<br/>
+`	"risco": "alto",`<br/>
+`	"gerente": {id}`<br/>
+`}`<br/>
+<br/>
+Membros de projeto <br/>
+PUT: /projetos/{id}/membros<br/>
+GET: /projetos/{id}/membros<br/>
+Objeto (text/uri-list):<br/>
+"http://localhost:8080/pessoas/{id}"<br/>
+<br/>
+<br/>
 # Script do banco de dados:
 
 * Este script criará as tabelas necessárias.

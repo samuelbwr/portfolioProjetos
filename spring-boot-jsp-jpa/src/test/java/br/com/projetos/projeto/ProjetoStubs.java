@@ -2,19 +2,22 @@ package br.com.projetos.projeto;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 
-public class ProjetoStubs {
+public interface ProjetoStubs {
 
-	public static String UNDELETABLE_STATUS = "iniciado";
+	String UNDELETABLE_STATUS = "iniciado";
 	
-	public static Projeto 
+	Projeto 
 		INVALID_PROJETO = Projeto.builder().descricao("Algum projeto").build(),
 		MINIMAL_PROJETO = Projeto.builder().nome("Nome do Projeto").build(),
-		UNFINISHED_PROJETO = MINIMAL_PROJETO.dataInicio(GregorianCalendar.from(LocalDate.of(2017, 1, 1).atStartOfDay(ZoneId.systemDefault())).getTime()).nome("Nome do Projeto")
-				.dataPrevisao(GregorianCalendar.from(LocalDate.of(2017, 2, 1).atStartOfDay(ZoneId.systemDefault())).getTime()).descricao("Projeto completo").orcamento(1f).risco("alto")
-				.status("ativo"),
-		FULL_PROJETO = UNFINISHED_PROJETO.dataFim(GregorianCalendar.from(LocalDate.of(2017, 2, 1).atStartOfDay(ZoneId.systemDefault())).getTime());
+		UNFINISHED_PROJETO = new Projeto().setNome("Algum nome").setDataInicio(GregorianCalendar.from(LocalDate.of(2017, 1, 1).atStartOfDay(ZoneId.systemDefault())).getTime())
+				.setNome("Nome do Projeto").setDescricao("Projeto completo").setOrcamento(1f).setRisco("alto")
+				.setDataPrevisao(GregorianCalendar.from(LocalDate.of(2017, 2, 1).atStartOfDay(ZoneId.systemDefault())).getTime())
+				.setStatus("ativo"),
+		FULL_PROJETO = new Projeto().setNome("Algum nome").setDataInicio(GregorianCalendar.from(LocalDate.of(2017, 1, 1).atStartOfDay(ZoneId.systemDefault())).getTime())
+				.setNome("Nome do Projeto").setDescricao("Projeto completo").setOrcamento(1f).setRisco("alto")
+				.setDataPrevisao(GregorianCalendar.from(LocalDate.of(2017, 2, 1).atStartOfDay(ZoneId.systemDefault())).getTime())
+				.setStatus("ativo").setDataFim(GregorianCalendar.from(LocalDate.of(2017, 2, 1).atStartOfDay(ZoneId.systemDefault())).getTime());
 }

@@ -13,29 +13,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import br.com.projetos.projeto.ProjetoRepository;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PessoaRepositoryTest {
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	@Autowired
+	private ProjetoRepository projetoRepository;
 
 	@Before
 	public void before() {
+		projetoRepository.deleteAll();
 		pessoaRepository.deleteAll();
 	}
 
 	@Test
 	public void testAddPessoa() throws Exception {
 		Pessoa pessoa = pessoaRepository.save(FULL_PESSOA);
-		assertThat(pessoa.id()).isGreaterThan(0l);
+		assertThat(pessoa.getId()).isGreaterThan(0l);
 	}
 	
 	@Test
 	public void testAddPessoaFunctionario() throws Exception {
 		Pessoa pessoa = pessoaRepository.save(FUNCIONARIO);
-		assertThat(pessoa.id()).isGreaterThan(0l);
-		assertThat(pessoa.funcionario()).isTrue();
+		assertThat(pessoa.getId()).isGreaterThan(0l);
+		assertThat(pessoa.isFuncionario()).isTrue();
 	}
 	
 	@Test(expected = ConstraintViolationException.class)
