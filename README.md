@@ -20,7 +20,7 @@ DELETE: /projetos/{id}<br/>
 GET: /projetos/{id}<br/>
 Objeto (application/json):<br/>
 `{  ` <br/>
-`	`"nome": "Projeto 01",`<br/>
+`	"nome": "Projeto 01",`<br/>
 `	"dataInicio": "1990-01-02",`<br/>
 `	"dataPrevisao": "1990-01-02",`<br/>
 `	"dataFim": "1990-01-02",`<br/>
